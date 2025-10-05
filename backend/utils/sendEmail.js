@@ -2,12 +2,12 @@ import nodemailer from "nodemailer";
 
 const sendEmail = async (to, subject, html) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.mailgun.org", // Mailgun SMTP server
+    host: "smtp.mailgun.org",
     port: 587,
-    secure: false, // TLS
+    secure: false, 
     auth: {
-      user: process.env.MG_USER, // postmaster@sandboxXXXX.mailgun.org
-      pass: process.env.MG_PASS, // Mailgun SMTP password
+      user: process.env.MG_USER, 
+      pass: process.env.MG_PASS,
     },
   });
 

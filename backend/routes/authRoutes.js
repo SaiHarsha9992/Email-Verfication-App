@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/signup", signup);
 router.get("/verify/:token", verifyEmail);
 router.post("/resend", resendVerification);
-router.post("/login", login); // 👈 must exist
+router.post("/login", login);
 router.get("/profile", protect, getProfile);
 
 export default router;

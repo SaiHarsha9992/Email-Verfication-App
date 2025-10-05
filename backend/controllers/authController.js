@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import sendEmail from "../utils/sendEmail.js";
 import { v4 as uuidv4 } from 'uuid';
-// ---------------------- SIGNUP ----------------------
+
 export const signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -37,7 +37,6 @@ try {
   }
 };
 
-// ---------------------- VERIFY EMAIL ----------------------
 export const verifyEmail = async (req, res) => {
   try {
     const { token } = req.params;
@@ -52,7 +51,6 @@ export const verifyEmail = async (req, res) => {
     user.tokenExpiry = undefined;
     await user.save();
 
-    // Redirect to login page after success
     const redirectURL = "https://email-verfication-app.vercel.app/login";
     res.send(`
       <html>
@@ -73,7 +71,6 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
-// ---------------------- LOGIN ----------------------
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -97,7 +94,6 @@ export const login = async (req, res) => {
   }
 };
 
-// ---------------------- PROTECTED USER INFO ----------------------
 export const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -106,7 +102,6 @@ export const getProfile = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-// ---------------------- RESEND VERIFICATION ----------------------
 export const resendVerification = async (req, res) => {
   try {
     const { email } = req.body;
