@@ -24,29 +24,9 @@ export const signup = async (req, res) => {
       tokenExpiry: Date.now() + 15 * 60 * 1000,
     });
 
- const link = `${process.env.BASE_URL}/api/auth/verify/${token}`;
-    const emailSubject = `Welcome! Please Verify Your Email`;
+    const link = `${process.env.BASE_URL}/api/auth/verify/${token}`;
+    await sendEmail(email, "Verify your Email", `<a href="${link}">Click here to verify your email</a>`);
 
-    // A more detailed and styled HTML email body
-    const emailBody = `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-        <div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-          <h2 style="color: #444; text-align: center;">Welcome to the Future, ${name}!</h2>
-          <p>We're thrilled to have you join us. To secure your account and get started, please verify your email address by clicking the button below.</p>
-          <p style="text-align: center;">
-            <a href="${link}" style="display: inline-block; padding: 12px 25px; margin: 20px 0; font-size: 16px; color: #fff; background-color: #581c87; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">Verify Your Account</a>
-          </p>
-          <p>This verification link is valid for the next <strong>15 minutes</strong>.</p>
-          <p>If you didn't create an account, you can safely ignore this email.</p>
-          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-          <div style="font-size: 12px; color: #999;">
-            <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
-            <p style="word-break: break-all;">${link}</p>
-          </div>
-        </div>
-      </div>
-    `;
-          await sendEmail(email, emailSubject, emailBody);
     res.status(201).json({ message: "Verification email sent! Please check your inbox." });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -69,7 +49,7 @@ export const verifyEmail = async (req, res) => {
     await user.save();
 
     // Redirect to login page after success
-    const redirectURL = "https://email-verification-trizen-app.vercel.app/login";
+    const redirectURL = "https://email-verfication-app.vercel.app/login";
     res.send(`
       <html>
         <head>
@@ -137,28 +117,8 @@ export const resendVerification = async (req, res) => {
     await user.save();
 
     const link = `${process.env.BASE_URL}/api/auth/verify/${token}`;
-    const emailSubject = `Welcome! Please Verify Your Email`;
-
-    // A more detailed and styled HTML email body
-    const emailBody = `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-        <div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-          <h2 style="color: #444; text-align: center;">Welcome to the Future, ${name}!</h2>
-          <p>We're thrilled to have you join us. To secure your account and get started, please verify your email address by clicking the button below.</p>
-          <p style="text-align: center;">
-            <a href="${link}" style="display: inline-block; padding: 12px 25px; margin: 20px 0; font-size: 16px; color: #fff; background-color: #581c87; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">Verify Your Account</a>
-          </p>
-          <p>This verification link is valid for the next <strong>15 minutes</strong>.</p>
-          <p>If you didn't create an account, you can safely ignore this email.</p>
-          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-          <div style="font-size: 12px; color: #999;">
-            <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
-            <p style="word-break: break-all;">${link}</p>
-          </div>
-        </div>
-      </div>
-    `;
-          await sendEmail(email, emailSubject, emailBody);
+    
+    await sendEmail(email, "Resend Verification Link", `<a href="${link}">Click here to verify again</a>`);
 
     res.json({ message: "New verification email sent!" });
   } catch (error) {
