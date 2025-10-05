@@ -28,8 +28,8 @@ This application addresses a critical component of modern web services: secure u
 ## Live Demo & Screenshots
 *(Optional) A live demo is hosted here: [Link to Deployed App]*  
 
-- **Frontend:** [https://your-frontend-url.vercel.app](https://your-frontend-url.vercel.app)  
-- **Backend:** [https://your-backend-url.onrender.com](https://your-backend-url.onrender.com)  
+- **Frontend:** [https://email-verification-trizen-app.vercel.app](https://email-verification-trizen-app.vercel.app).  
+- **Backend:** [https://email-verfication-app.onrender.com](https://email-verfication-app.onrender.com)
 
 1. **Signup Page with Password Validation:** Users get real-time feedback on password strength.
 2. **Verification Email Sent:** Notification appears after successful submission.
