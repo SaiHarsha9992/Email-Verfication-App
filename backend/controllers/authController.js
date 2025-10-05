@@ -49,7 +49,7 @@ export const verifyEmail = async (req, res) => {
     await user.save();
 
     // Redirect to login page after success
-    const redirectURL = "http://localhost:5173/login";
+    const redirectURL = "https://email-verification-trizen-app.vercel.app/login";
     res.send(`
       <html>
         <head>

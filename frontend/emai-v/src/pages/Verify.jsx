@@ -15,7 +15,7 @@ export default function Verify() {
         return;
     }
 
-    axios.get(`http://localhost:5000/api/auth/verify/${token}`)
+    axios.get(`https://email-verfication-app.onrender.com/api/auth/verify/${token}`)
       .then(res => {
         setMessage(res.data.message || "Email verified successfully!");
         setStatus("success");
