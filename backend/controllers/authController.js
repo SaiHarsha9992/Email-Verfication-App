@@ -25,7 +25,11 @@ export const signup = async (req, res) => {
     });
 
     const link = `${process.env.BASE_URL}/api/auth/verify/${token}`;
-    await sendEmail(email, "Verify your Email", `<a href="${link}">Click here to verify your email</a>`);
+try {
+  await sendEmail(email, "Verify your Email", `<a href="${link}">Click here to verify your email</a>`);
+} catch (err) {
+  console.error("Email sending failed:", err.message);
+}
 
     res.status(201).json({ message: "Verification email sent! Please check your inbox." });
   } catch (err) {
