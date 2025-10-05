@@ -10,7 +10,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public routes (accessible only when NOT logged in) */}
         <Route
           path="/signup"
           element={
@@ -28,7 +27,6 @@ export default function App() {
           }
         />
 
-        {/* Protected routes (require login) */}
         <Route
           path="/"
           element={
@@ -38,7 +36,6 @@ export default function App() {
           }
         />
 
-        {/* Always accessible */}
         <Route path="/verify/*" element={<Verify />} />
       </Routes>
     </BrowserRouter>

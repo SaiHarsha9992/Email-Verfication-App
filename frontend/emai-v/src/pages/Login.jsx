@@ -37,18 +37,15 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Blobs */}
       <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob"></div>
       <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-400 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
-      {/* Login Card */}
       <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 z-10">
         <h2 className="text-4xl font-bold text-center mb-2 tracking-wider">Welcome Back</h2>
         <p className="text-center text-gray-300 mb-8">Enter the gateway to the future</p>
 
         <form onSubmit={handleLogin} className="space-y-6">
-          {/* Email Input */}
           <div className="relative">
             <div className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -63,7 +60,6 @@ export default function Login() {
             />
           </div>
 
-          {/* Password Input */}
           <div className="relative">
              <div className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
@@ -78,7 +74,6 @@ export default function Login() {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
@@ -93,14 +88,12 @@ export default function Login() {
           </button>
         </form>
 
-        {/* Message Area */}
         {msg && (
           <p className={`mt-6 text-center text-sm font-medium ${isSuccess ? 'text-green-400' : 'text-red-400'} transition-all duration-300`}>
             {msg}
           </p>
         )}
 
-        {/* Sign Up Link */}
         <p className="text-center text-gray-400 mt-8">
           Don't have an account?{" "}
           <a href="/signup" className="font-semibold text-cyan-400 hover:text-cyan-300 transition">
@@ -109,7 +102,6 @@ export default function Login() {
         </p>
       </div>
       
-      {/* Add a style block for the animations */}
       <style jsx global>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }

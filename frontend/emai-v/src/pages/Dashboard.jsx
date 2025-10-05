@@ -18,25 +18,20 @@ export default function Dashboard() {
         navigate("/login");
         return;
     }
-
-    // You might already have user data in localStorage, which you can use for an initial render.
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
         setUser(JSON.parse(storedUser));
     }
 
-    // Then, verify and get the latest profile from the server.
     axios
       .get("https://email-verfication-app.onrender.com/api/auth/profile", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         setUser(res.data)
-        // Optionally update localStorage with fresh user data
         localStorage.setItem("user", JSON.stringify(res.data));
       })
       .catch(() => {
-        // If the token is invalid, clear storage and redirect
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         navigate("/login");
@@ -45,12 +40,11 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Blobs */}
+
       <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob"></div>
       <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-400 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
-      {/* Dashboard Card */}
       <div className="w-full max-w-lg bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 z-10 text-center">
         {user ? (
           <>
@@ -59,7 +53,7 @@ export default function Dashboard() {
             
             <div className="bg-gray-800/50 p-6 rounded-lg my-6 text-left">
                 <h3 className="text-xl font-semibold border-b border-gray-600 pb-2 mb-4">User Details</h3>
-                <p className="text-gray-300"><span className="font-semibold text-white">Account ID:</span> {user.id || 'N/A'}</p>
+                <p className="text-gray-300"><span className="font-semibold text-white">Account ID:</span> {user.accountId || 'N/A'}</p>
                 <p className="text-gray-300"><span className="font-semibold text-white">Joined:</span> {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'Recently'}</p>
             </div>
 
@@ -82,7 +76,6 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* Style block for animations */}
       <style jsx global>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }

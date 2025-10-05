@@ -10,6 +10,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application demonstrating a
 - [Design Choices & Implementation](#design-choices--implementation)
 - [Setup and Run Instructions](#setup-and-run-instructions)
 - [API Endpoints](#api-endpoints)
+- [Deployment Notes](#deployment-notes)
 
 ## Project Overview
 This application addresses a critical component of modern web services: secure user onboarding. It implements a robust signup system where new users must verify their email address via a time-sensitive link before their account becomes active. This process prevents spam, ensures users provide a valid email, and establishes a trusted communication channel.
@@ -25,7 +26,10 @@ This application addresses a critical component of modern web services: secure u
 - **Password Strength Meter:** Real-time feedback on the signup form helps users create strong, secure passwords.
 
 ## Live Demo & Screenshots
-*(Optional) A live demo is hosted here: [Link to Deployed App]*
+*(Optional) A live demo is hosted here: [Link to Deployed App]*  
+
+- **Frontend:** [https://your-frontend-url.vercel.app](https://your-frontend-url.vercel.app)  
+- **Backend:** [https://your-backend-url.onrender.com](https://your-backend-url.onrender.com)  
 
 1. **Signup Page with Password Validation:** Users get real-time feedback on password strength.
 2. **Verification Email Sent:** Notification appears after successful submission.
@@ -99,6 +103,7 @@ EMAIL_PASS=your_smtp_password
 
 # Start the server
 npm start
+
 ```
 ### Frontend Setup
 ```bash
@@ -122,3 +127,24 @@ The application will be available at http://localhost:3000.
 | GET    | `/api/auth/verify/:token` | Verifies the email using the provided token |
 | GET    | `/api/auth/profile`    | Retrieves the logged-in user's profile      |
 
+## Deployment Notes
+
+- **Frontend:** Successfully deployed on Vercel.  
+- **Backend:** Successfully deployed on Render.  
+
+## Deployment Notes
+
+- **Frontend:** Successfully deployed on Vercel.  
+- **Backend:** Successfully deployed on Render.  
+
+**Note:**  
+
+- During development, I tried using SMTP (e.g., Gmail or Mailgun) for sending verification emails, and it worked perfectly on localhost.  
+- However, after deploying the backend to Render, email sending does not work because Render blocks outgoing SMTP connections on standard ports (587/465).  
+- This causes the signup process to hang when trying to send emails from the deployed backend.  
+
+**Possible Solutions:**  
+
+1. Use an email API service like Mailgun, SendGrid, or Postmark via their HTTP API instead of SMTP.  
+2. Alternatively, deploy the backend to a VPS or cloud server that allows outbound SMTP connections.  
+3. Ensure all SMTP credentials are correctly configured in environment variables.

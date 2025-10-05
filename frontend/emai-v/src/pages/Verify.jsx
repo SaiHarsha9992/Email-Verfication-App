@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Using Link for better navigation
+import { Link } from "react-router-dom";
 
 export default function Verify() {
   const [message, setMessage] = useState("Verifying your email...");
-  const [status, setStatus] = useState("loading"); // 'loading', 'success', 'error'
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
     const token = window.location.pathname.split("/").pop();
@@ -54,7 +54,7 @@ export default function Verify() {
             </Link>
           </>
         );
-      default: // loading
+      default: 
         return (
           <>
             <svg className="animate-spin h-8 w-8 text-cyan-400 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ export default function Verify() {
   
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Blobs */}
+      
       <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob"></div>
       <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-400 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
@@ -79,7 +79,6 @@ export default function Verify() {
         {renderContent()}
       </div>
 
-      {/* Style block for animations */}
       <style jsx global>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }

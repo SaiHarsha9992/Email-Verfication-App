@@ -9,7 +9,6 @@ export default function Signup() {
   const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
-  // State to track password validation criteria
   const [passwordCriteria, setPasswordCriteria] = useState({
     length: false,
     uppercase: false,
@@ -19,7 +18,6 @@ export default function Signup() {
   });
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
-  // --- Helper component for criteria list items ---
   const CriteriaItem = ({ text, met }) => (
     <li className={`flex items-center transition-colors duration-300 ${met ? 'text-green-400' : 'text-gray-400'}`}>
       {met ? (
@@ -37,7 +35,7 @@ export default function Signup() {
       uppercase: /[A-Z]/.test(password),
       lowercase: /[a-z]/.test(password),
       number: /[0-9]/.test(password),
-      specialChar: /[\W_]/.test(password), // Checks for non-alphanumeric characters
+      specialChar: /[\W_]/.test(password),
     };
     setPasswordCriteria(criteria);
   };
@@ -50,7 +48,6 @@ export default function Signup() {
       return;
     }
 
-    // Check if all password criteria are met before submitting
     const allCriteriaMet = Object.values(passwordCriteria).every(Boolean);
     if (!allCriteriaMet) {
         setMsg("Please ensure your password meets all the criteria.");
@@ -81,7 +78,6 @@ export default function Signup() {
     const { name, value } = e.target;
     setForm({ ...form, [e.target.name]: value });
 
-    // Validate password in real-time
     if (name === "password") {
       validatePassword(value);
     }
@@ -89,18 +85,16 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Blobs */}
+
       <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob"></div>
       <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-400 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
-      {/* Signup Card */}
       <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 z-10">
         <h2 className="text-4xl font-bold text-center mb-2 tracking-wider">Create Account</h2>
         <p className="text-center text-gray-300 mb-8">Join us and shape the future</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name Input */}
           <div className="relative">
             <div className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -115,7 +109,6 @@ export default function Signup() {
             />
           </div>
         
-          {/* Email Input */}
           <div className="relative">
             <div className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -129,8 +122,6 @@ export default function Signup() {
               className="w-full bg-gray-800/50 text-white rounded-lg py-3 pl-10 pr-4 border border-transparent focus:border-cyan-400 focus:ring-2 focus:ring-cyan-300 transition duration-300"
             />
           </div>
-
-          {/* Password Input */}
           <div className="relative">
              <div className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
@@ -147,7 +138,6 @@ export default function Signup() {
             />
           </div>
           
-          {/* Password Criteria Box */}
           {isPasswordFocused && (
             <div className="p-4 bg-gray-800/60 rounded-lg text-sm space-y-2 transition-all duration-300">
                 <ul className="space-y-1">
@@ -160,7 +150,6 @@ export default function Signup() {
             </div>
           )}
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
@@ -175,14 +164,12 @@ export default function Signup() {
           </button>
         </form>
 
-        {/* Message Area */}
         {msg && (
           <p className={`mt-6 text-center text-sm font-medium ${isSuccess ? 'text-green-400' : 'text-red-400'} transition-all duration-300`}>
             {msg}
           </p>
         )}
 
-        {/* Login Link */}
         <p className="text-center text-gray-400 mt-8">
           Already have an account?{" "}
           <Link to="/login" className="font-semibold text-cyan-400 hover:text-cyan-300 transition">
@@ -191,7 +178,6 @@ export default function Signup() {
         </p>
       </div>
       
-      {/* Style block for the animations */}
       <style jsx global>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
