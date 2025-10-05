@@ -63,7 +63,7 @@ export default function Signup() {
     setIsSuccess(false);
 
     try {
-      const res = await axios.post("https://email-verfication-app.onrender.com/api/auth/signup", form);
+      const res = await axios.post("http://localhost:5000/api/auth/signup", form);
       setMsg(res.data.message + " Redirecting to login...");
       setIsSuccess(true);
       setTimeout(() => {
