@@ -25,6 +25,14 @@ This application addresses a critical component of modern web services: secure u
 - **Resend Verification Link:** *(Future implementation)* Users can request a new verification email.
 - **Password Strength Meter:** Real-time feedback on the signup form helps users create strong, secure passwords.
 
+## Protected Routes & User Flow
+
+- Certain routes in the frontend (like `/profile`, `/dashboard`, etc.) are protected.  
+- Users must be logged in to access these routes. Authentication is checked via the JWT token stored in localStorage.  
+- If a logged-in user tries to access `/login` or `/signup`, they are automatically redirected to the dashboard or a protected page until they log out.  
+- After logging out, the user can access the login/signup pages again.  
+- This ensures that verified users do not revisit authentication pages unnecessarily, maintaining a smooth and secure user experience.
+
 ## Live Demo & Screenshots
 *(Optional) A live demo is hosted here: [Link to Deployed App]*  
 
